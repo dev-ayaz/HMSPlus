@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMSPlus.DataAccess", "HMSPlus.DataAccess\HMSPlus.DataAccess.csproj", "{C8933C81-BE3D-46A8-8BA9-D978663496AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMSPlus.Web", "HMSPlus.Web\HMSPlus.Web.csproj", "{8FF9CCF9-6A20-461E-9310-04F23A0DF0C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8933C81-BE3D-46A8-8BA9-D978663496AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8933C81-BE3D-46A8-8BA9-D978663496AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8933C81-BE3D-46A8-8BA9-D978663496AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8933C81-BE3D-46A8-8BA9-D978663496AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FF9CCF9-6A20-461E-9310-04F23A0DF0C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF9CCF9-6A20-461E-9310-04F23A0DF0C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FF9CCF9-6A20-461E-9310-04F23A0DF0C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FF9CCF9-6A20-461E-9310-04F23A0DF0C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F38E18C-F964-4E54-97BC-5DEF68F87209}
+	EndGlobalSection
+EndGlobal

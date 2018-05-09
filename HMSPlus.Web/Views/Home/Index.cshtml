@@ -1,0 +1,296 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="m-heading-1 border-green m-bordered">
+                <h3>
+                    Dashboard
+                    <small>dashboard & statistics</small>
+                </h3>
+            </div>
+            <!-- END PAGE TITLE -->
+        </div>
+
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BREADCRUMB -->
+        <!-- END PAGE BREADCRUMB -->
+        <!-- BEGIN PAGE BASE CONTENT -->
+        <!-- BEGIN DASHBOARD STATS 1-->
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat blue">
+                    <div class="visual">
+                        <i class="fa fa-comments"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> 1349 </div>
+                        <div class="desc"> New Requests </div>
+                    </div>
+                    <a class="more" href="#">
+                        View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat red">
+                    <div class="visual">
+                        <i class="fa fa-bar-chart-o"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> 150 </div>
+                        <div class="desc"> Cancelled Requests </div>
+                    </div>
+                    <a class="more" href="#">
+                        View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat green">
+                    <div class="visual">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> 549 </div>
+                        <div class="desc"> Completed Requests </div>
+                    </div>
+                    <a class="more" href="#">
+                        View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat purple">
+                    <div class="visual">
+                        <i class="fa fa-globe"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"> 100</div>
+                        <div class="desc"> In Progress Requests</div>
+                    </div>
+                    <a class="more" href="#">
+                        View more
+                        <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <!-- END DASHBOARD STATS 1-->
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="CurrentRequestChart" style="min-height: 400px;">
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="RequestChart" style="min-height: 400px;">
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="RequestChartYearly" style="min-height: 400px; margin-top: 20px;">
+
+        </div>
+
+    </div>
+</div>
+@section scripts{
+    @*<script src="~/assets/global/plugins/highcharts/js/highcharts.js"></script>*@
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script>
+
+        // Radialize the colors
+        Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+            return {
+                radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7
+                },
+                stops: [
+                    [0, color],
+                    [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                ]
+            };
+        });
+
+        // Build the chart
+        Highcharts.chart('CurrentRequestChart', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Percentage of Current Month Maintenance Requests By Status'
+
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        },
+                        connectorColor: 'silver'
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                data: [
+                    { name: 'In Progress', y: 10.5 },
+                    {
+                        name: 'New',
+                        y: 34.03,
+                        sliced: true,
+                        selected: true
+                    },
+                    { name: 'Completed', y: 35.3 },
+                    { name: 'Refused', y: 4.77 },
+                    { name: 'Pending', y: 3.25 },
+                    { name: 'Assigned', y: 20.6 }
+                ]
+            }]
+        });
+
+        Highcharts.chart('RequestChart', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Percentage of Current Month Maintenance Requests By Type '
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        },
+                        connectorColor: 'silver'
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                data: [
+                    { name: 'House Meters', y: 56.03 },
+                    {
+                        name: 'Tanks',
+                        y: 24.03,
+                        sliced: true,
+                        selected: true
+                    },
+                    { name: 'Sensor Points', y: 10.38 },
+                    { name: 'Networks', y: 4.77 },
+                    { name: 'Pumps', y: 3.25 },
+                    { name: 'Valves', y: 2.75 }
+                ]
+            }]
+        });
+
+        Highcharts.chart('RequestChartYearly', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Monthly Average Maintenance Request'
+            },
+            subtitle: {
+                text: 'Source: Aramoon MIS'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number Of Requests'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'House Meters',
+                data: [50, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54]
+
+            }, {
+                name: 'Tanks',
+                data: [83, 78, 98, 93, 106, 84, 105, 104, 91, 83, 106, 92]
+
+            }, {
+                name: 'Networks',
+                data: [48, 38, 39, 41, 47, 48, 59, 59, 52, 65, 59, 51]
+
+            }, {
+                name: 'Pumps',
+                data: [42, 33, 34, 39, 52, 75, 57, 60, 47, 39, 46, 51]
+
+            },
+            {
+                name: 'Sensor Points',
+                data: [42, 33, 34, 39, 52, 75, 57, 60, 47, 39, 46, 51]
+
+            }]
+        });
+    </script>
+}
