@@ -7,13 +7,13 @@ namespace HMSPlus.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UserRolesModifiedagain : IMigrationMetadata
+    public sealed partial class UserRoleModified : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UserRolesModifiedagain));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UserRoleModified));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805091121347_User Roles Modified again"; }
+            get { return "201805092005585_User Role Modified"; }
         }
         
         string IMigrationMetadata.Source
