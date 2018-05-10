@@ -1,14 +1,13 @@
 ﻿// ┌────────────────────────────────────────────────────────────────────┐ \\
 // │ Bundel Config For App Resources By dev_Ayaz                        │ \\
 // ├────────────────────────────────────────────────────────────────────┤ \\
-// │ Copyright © 2011-2017 Muhammad Ayaz (dev_ayaz@yahoo.com)           │ \\
-// │ Copyright © 2011-2017 Muhammad Ayaz (dev_ayaz@yahoo.com)           │ \\
+// │ Copyright © 2011-2018 Muhammad Ayaz (dev_ayaz@yahoo.com)           │ \\
+// │ Copyright © 2011-2018 Muhammad Ayaz (dev_ayaz@yahoo.com)           │ \\
 // ├────────────────────────────────────────────────────────────────────┤ \\
 // │                                                                    │ \\
 // └────────────────────────────────────────────────────────────────────┘ \\
 
 using HMSPlus.Web.Shared;
-using System.Web;
 using System.Web.Optimization;
 
 namespace HMSPlus.Web
@@ -44,7 +43,7 @@ namespace HMSPlus.Web
 
 
             bundles.Add(new ScriptBundle("~/bundles/scripts/AppCommonScripts").Include(
-                "~/Scripts/AppCommonScripts/CargoMateApp.js",
+                "~/Scripts/AppCommonScripts/MaintenanceApp.js",
                 "~/Scripts/AppCommonScripts/Utilities.js",
                 "~/Scripts/AppCommonScripts/AppAlerts.js",
                 "~/Scripts/AppCommonScripts/link-activator.js",
@@ -81,6 +80,14 @@ namespace HMSPlus.Web
             bundles.Add(new StyleBundle("~/bundles/css/fonts").Include(
                 "~/assets/global/plugins/font-awesome/css/font-awesome.css",
                 "~/assets/global/plugins/simple-line-icons/simple-line-icons.css"));
+
+            //bundles.Add(new StyleBundle("~/bundles/css/plugins").Include(
+            //    "~/Content/Css/Vendors/bootstrap.css",
+            //    "~/Content/Css/Vendors/bootstrap-switch.css",
+            //    "~/Content/Css/Vendors/morris.css",
+            //    "~/Content/Css/Vendors/mapplic.css",
+            //    "~/Content/Css/Vendors/sweetalert/sweetalert.css",
+            //    "~/Content/Css/Vendors/bootstrap-datepicker/*.css"));
         }
     }
 }

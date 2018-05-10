@@ -61,11 +61,10 @@ namespace HMSPlus.Web.Controllers
                     .Select(m => m.Id).ToList();
 
             //var menus = UnitOfWork.Menus.GetWhere(m => permittedMenus.Contains(m.Id) && , "SubMenus").ToList();
-            var a = UnitOfWork.Menus.GetAll().ToList();
-            var menus =
-                UnitOfWork.Menus.GetWhere(
-                    m => m.ParentId == null && m.SubMenus.Any(s => s.IsSidebarMenu && permittedMenus.Contains(s.Id)),
-                    "SubMenus").ToList();
+
+            var menus = UnitOfWork.Menus.GetWhere(
+                         m => m.ParentId == null && m.SubMenus.Any(s => s.IsSidebarMenu && permittedMenus.Contains(s.Id)),
+                        "SubMenus").ToList();
 
             var result = menus.Select(m => new MenuViewModel
             {
