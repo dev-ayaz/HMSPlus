@@ -1,0 +1,108 @@
+﻿.timeline .timeline-body {
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+}
+
+.timeline .timeline-body-arrow {
+    border-color: transparent #e8e8e8 transparent transparent;
+}
+
+.timeline-badge {
+    width: 80px;
+    height: 80px;
+    border-radius: 50% !important;
+    padding: 0px !important;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .timeline-badge h4 {
+        margin: 0px;
+        display: block;
+        width: 100%;
+    }
+
+.timeline:before, .timeline-badge {
+    background-color: #e8e8e8;
+}
+
+.rooms {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .rooms .room {
+        position: relative;
+        width: 130px;
+        height: 130px;
+        border: 1px solid #e8e8e8;
+        background-color: #Fbfbfb;
+        text-align: center;
+        cursor: pointer;
+        float: left;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: flex-start;
+        margin: 5px;
+        border-radius: 3px !important;
+        box-shadow: 0px 1px 1px rgba(0,0,0, 0.06);
+    }
+
+    .rooms > .room > div {
+        display: block;
+        width: 100%;
+    }
+
+    .rooms .room .room-footer, .rooms .room .room-header {
+        position: absolute;
+        padding: 5px;
+        text-align: center;
+        background-color: #FBFBFB;
+    }
+
+    .rooms .room .room-header {
+        top: 0px;
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    .rooms .room .room-footer {
+        bottom: 0px;
+        border-top: 1px solid #e8e8e8;
+    }
+
+        .rooms .room .room-footer > div {
+            display: inline-block;
+            font-size: 15px;
+        }
+
+.timeline-badge.collapsed + .timeline-body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/*.timeline-badge:not(.collapsed) + .timeline-body .timeline-data-header {
+            display: none;
+        }*/
+.timeline-data-header td {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.timeline-data-header th, .timeline-data-header td {
+    text-align: center;
+}
+
+.timeline {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.portlet-body form {
+    padding: 15px 20px 10px 20px;
+    background-color: #F9f9f9;
+    border-bottom: 1px solid #f3f3f3;
+}
