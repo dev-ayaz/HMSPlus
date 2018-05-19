@@ -1,5 +1,6 @@
 namespace HMSPlus.DataAccess
 {
+    using HMSPlus.DataAccess.Models.Users;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -9,12 +10,7 @@ namespace HMSPlus.DataAccess
     [Table("Users.Roles")]
     public partial class Role
     {
-     
-        public Role()
-        {
-            Users = new HashSet<User>();
-        }
-
+    
         public string Id { get; set; }
 
         [Required]
@@ -27,6 +23,6 @@ namespace HMSPlus.DataAccess
         [StringLength(128)]
         public string Discriminator { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

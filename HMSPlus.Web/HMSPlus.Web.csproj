@@ -198,6 +198,10 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Hotels\Controllers\HotelController.cs" />
+    <Compile Include="Areas\Hotels\HotelsAreaRegistration.cs" />
+    <Compile Include="Areas\Hotels\Models\FloorViewModel.cs" />
+    <Compile Include="Areas\Hotels\Models\HotelViewModel.cs" />
     <Compile Include="Areas\Users\Controllers\RolesController.cs" />
     <Compile Include="Areas\Users\Controllers\UnAuthorizeController.cs" />
     <Compile Include="Areas\Users\Controllers\UsersController.cs" />
@@ -1398,6 +1402,10 @@
     <Content Include="Areas\Users\Views\Users\Index.cshtml" />
     <Content Include="Areas\Users\Views\Users\Partials\_Add.cshtml" />
     <Content Include="Areas\Users\Views\Users\Partials\_Edit.cshtml" />
+    <Content Include="Areas\Hotels\Views\Hotel\Index.cshtml" />
+    <Content Include="Areas\Hotels\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Hotels\Views\web.config" />
+    <Content Include="Areas\Hotels\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1486,8 +1494,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Hotels\Hotels\" />
     <Folder Include="Areas\Users\Views\Shared\" />
     <Folder Include="assets\global\img\portfolio\" />
+    <Folder Include="SystemImages\UserImages\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

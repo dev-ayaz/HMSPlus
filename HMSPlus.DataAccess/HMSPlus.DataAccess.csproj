@@ -56,15 +56,18 @@
     <Compile Include="Contracts\IUnitOfWork.cs" />
     <Compile Include="Contracts\IView.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Migrations\201805091953063_Initial Migration.cs" />
-    <Compile Include="Migrations\201805091953063_Initial Migration.Designer.cs">
-      <DependentUpon>201805091953063_Initial Migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805092005585_User Role Modified.cs" />
-    <Compile Include="Migrations\201805092005585_User Role Modified.Designer.cs">
-      <DependentUpon>201805092005585_User Role Modified.cs</DependentUpon>
+    <Compile Include="Migrations\201805192212010_Initial Migration.cs" />
+    <Compile Include="Migrations\201805192212010_Initial Migration.Designer.cs">
+      <DependentUpon>201805192212010_Initial Migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Configurations\City.cs" />
+    <Compile Include="Models\Hotels\Floor.cs" />
+    <Compile Include="Models\Hotels\Hotel.cs" />
+    <Compile Include="Models\Hotels\HotelTypes.cs" />
+    <Compile Include="Models\Hotels\Room.cs" />
+    <Compile Include="Models\Hotels\RoomPricing.cs" />
+    <Compile Include="Models\Hotels\RoomType.cs" />
     <Compile Include="Models\Users\Action.cs" />
     <Compile Include="Models\Users\Menu.cs" />
     <Compile Include="Models\Users\MenuAction.cs" />
@@ -89,11 +92,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805091953063_Initial Migration.resx">
-      <DependentUpon>201805091953063_Initial Migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805092005585_User Role Modified.resx">
-      <DependentUpon>201805092005585_User Role Modified.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805192212010_Initial Migration.resx">
+      <DependentUpon>201805192212010_Initial Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

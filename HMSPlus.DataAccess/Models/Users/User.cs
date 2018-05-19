@@ -1,5 +1,6 @@
 namespace HMSPlus.DataAccess
 {
+    using HMSPlus.DataAccess.Models.Users;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -14,7 +15,6 @@ namespace HMSPlus.DataAccess
         {
             UserClaims = new HashSet<UserClaim>();
             UserLogins = new HashSet<UserLogin>();
-            Roles = new HashSet<Role>();
         }
 
         public string Id { get; set; }
@@ -58,6 +58,6 @@ namespace HMSPlus.DataAccess
 
         public virtual ICollection<UserLogin> UserLogins { get; set; }
 
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

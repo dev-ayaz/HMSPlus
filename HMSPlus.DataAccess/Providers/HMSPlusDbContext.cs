@@ -1,4 +1,6 @@
-﻿using HMSPlus.DataAccess.Models.Users;
+﻿using HMSPlus.DataAccess.Models.Configurations;
+using HMSPlus.DataAccess.Models.Hotels;
+using HMSPlus.DataAccess.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -55,13 +57,20 @@ namespace HMSPlus.DataAccess.Providers
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
+
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<HotelType> HotelTypes { get; set; }
+        public virtual DbSet<Hotel> Hotels { get; set; }
+        public virtual DbSet<Floor> Floors { get; set; }
+        public virtual DbSet<RoomType> RoomTypes { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Role>()
-                .HasMany(e => e.Users)
-                .WithMany(e => e.Roles)
-                .Map(m => m.ToTable("UserRoles", "Users").MapLeftKey("RoleId").MapRightKey("UserId"));
+            
+           
         }
     }
 }

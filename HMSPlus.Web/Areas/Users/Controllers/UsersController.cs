@@ -73,11 +73,11 @@ namespace HMSPlus.Web.Areas.Users.Controllers
                 || u.Email.ToLower().Contains(searchTerm)
                 || u.PhoneNumber.Contains(searchTerm),
                     OrderByExpression
-                , "UserRoles,UserRoles.Role").ToList();
+                , "UserRoles.Role").ToList();
             }
             else
             {
-                extraNetUsers = UnitOfWork.Users.GetAll(pageNumber, filter.PageLenght, null, OrderByExpression, "UserRoles,UserRoles.Role1").ToList();
+                extraNetUsers = UnitOfWork.Users.GetAll(pageNumber, filter.PageLenght, null, OrderByExpression, "UserRoles.Role").ToList();
             }
 
             return Json(new
@@ -94,7 +94,7 @@ namespace HMSPlus.Web.Areas.Users.Controllers
                     r.PhoneNumber,
                     CreationDate = r.CreationDate?.ToString("dd/MMMM/yyyy"),
                     r.IsActive,
-                    UserRole = r.Roles.FirstOrDefault()?.Name,
+                    UserRole = r.UserRoles.FirstOrDefault().Role?.Name,
                     r.ImageUrl
 
                 }).ToList()
@@ -177,7 +177,7 @@ namespace HMSPlus.Web.Areas.Users.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            var user = UnitOfWork.Users.GetWhere(a => a.Id == id, "UserRoles").FirstOrDefault();
+            var user = UnitOfWork.Users.GetWhere(a => a.Id == id, "UserRoles.Role").FirstOrDefault();
 
             if (user == null)
             {
@@ -186,7 +186,7 @@ namespace HMSPlus.Web.Areas.Users.Controllers
 
 
 
-            var roleId = user.Roles.FirstOrDefault()?.Id;
+            var roleId = user.UserRoles.FirstOrDefault().Role.Id;
 
             var roles = UnitOfWork.Roles.GetAll().ToList();
 
@@ -247,7 +247,7 @@ namespace HMSPlus.Web.Areas.Users.Controllers
             }
 
 
-            var userRole = UnitOfWork.UserRoles.GetWhere(r => r.UserId == user.UserId, "Role").FirstOrDefault();
+            var userRole = UnitOfWork.UserRoles.GetWhere(r => r.UserId == user.UserId).FirstOrDefault();
 
             if (userRole != null)
             {

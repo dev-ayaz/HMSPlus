@@ -1,4 +1,5 @@
 ﻿using HMSPlus.DataAccess.Contracts;
+using HMSPlus.DataAccess.Models.Hotels;
 using HMSPlus.DataAccess.Models.Users;
 using HMSPlus.DataAccess.Providers.Helpers;
 using System;
@@ -32,6 +33,8 @@ namespace HMSPlus.DataAccess.Providers
         public IRepository<MenuAction> MenuActions => GetStandardRepository<MenuAction>();
         public IRepository<RolePermission> RolePermissions => GetStandardRepository<RolePermission>();
 
+        public IRepository<Hotel> Hotels => GetStandardRepository<Hotel>();
+        public IRepository<Floor> Floors => GetStandardRepository<Floor>();
     }
 
 }
