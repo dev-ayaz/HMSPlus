@@ -13,7 +13,7 @@ namespace HMSPlus.DataAccess.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201805091953063_Initial Migration"; }
+            get { return "201805192212010_Initial Migration"; }
         }
         
         string IMigrationMetadata.Source

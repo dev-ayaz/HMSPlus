@@ -1,4 +1,5 @@
-﻿using HMSPlus.DataAccess.Models.Users;
+﻿using HMSPlus.DataAccess.Models.Hotels;
+using HMSPlus.DataAccess.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace HMSPlus.DataAccess.Contracts
         IRepository<Models.Users.Action> Actions { get; }
         IRepository<MenuAction> MenuActions { get; }
         IRepository<RolePermission> RolePermissions { get; }
+
+        IRepository<Hotel> Hotels { get; }
+        IRepository<Floor> Floors { get; }
 
     }
 

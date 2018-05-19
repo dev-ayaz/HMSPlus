@@ -75,6 +75,20 @@ namespace HMSPlus.DataAccess.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "Users.UserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                        Discriminator = c.String(),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("Users.Roles", t => t.RoleId, cascadeDelete: true)
+                .ForeignKey("Users.Users", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
                 "Users.Users",
                 c => new
                     {
@@ -124,44 +138,138 @@ namespace HMSPlus.DataAccess.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
-                "Users.UserRoles",
+                "Configurations.Cities",
                 c => new
                     {
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                        UserId = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
+                        NameEn = c.String(),
+                        NameAr = c.String(),
+                        IsActive = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => new { t.RoleId, t.UserId })
-                .ForeignKey("Users.Roles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("Users.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.RoleId)
-                .Index(t => t.UserId);
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "Hotel.Floors",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(maxLength: 50),
+                        HotelId = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("Hotel.Hotels", t => t.HotelId)
+                .Index(t => t.HotelId);
+            
+            CreateTable(
+                "Hotel.Hotels",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        BranchCode = c.String(maxLength: 250),
+                        Description = c.String(),
+                        HotelTypeId = c.Int(nullable: false),
+                        Location = c.String(maxLength: 250),
+                        CityId = c.Int(nullable: false),
+                        Address = c.String(),
+                        NumberOfFloors = c.Int(nullable: false),
+                        NumberOfRooms = c.Int(nullable: false),
+                        DateCreated = c.DateTime(),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("Configurations.Cities", t => t.CityId, cascadeDelete: true)
+                .ForeignKey("Hotel.HotelTypes", t => t.HotelTypeId, cascadeDelete: true)
+                .Index(t => t.HotelTypeId)
+                .Index(t => t.CityId);
+            
+            CreateTable(
+                "Hotel.HotelTypes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        NameEn = c.String(),
+                        NameAr = c.String(),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "Hotel.Rooms",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        RoomNumber = c.Int(nullable: false),
+                        RoomName = c.String(maxLength: 250),
+                        FloorId = c.Int(),
+                        RoomTypeId = c.Int(),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("Hotel.Floors", t => t.FloorId)
+                .ForeignKey("Hotel.RoomTypes", t => t.RoomTypeId)
+                .Index(t => t.FloorId)
+                .Index(t => t.RoomTypeId);
+            
+            CreateTable(
+                "Hotel.RoomTypes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        NameEn = c.String(maxLength: 250),
+                        NameAr = c.String(maxLength: 250),
+                        NumberOfBeds = c.Int(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                        HotelId = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("Hotel.Hotels", t => t.HotelId)
+                .Index(t => t.HotelId);
             
         }
         
         public override void Down()
         {
+            DropForeignKey("Hotel.Rooms", "RoomTypeId", "Hotel.RoomTypes");
+            DropForeignKey("Hotel.RoomTypes", "HotelId", "Hotel.Hotels");
+            DropForeignKey("Hotel.Rooms", "FloorId", "Hotel.Floors");
+            DropForeignKey("Hotel.Floors", "HotelId", "Hotel.Hotels");
+            DropForeignKey("Hotel.Hotels", "HotelTypeId", "Hotel.HotelTypes");
+            DropForeignKey("Hotel.Hotels", "CityId", "Configurations.Cities");
             DropForeignKey("Users.RolePermissions", "RoleId", "Users.Roles");
             DropForeignKey("Users.UserRoles", "UserId", "Users.Users");
-            DropForeignKey("Users.UserRoles", "RoleId", "Users.Roles");
             DropForeignKey("Users.UserLogins", "UserId", "Users.Users");
             DropForeignKey("Users.UserClaims", "UserId", "Users.Users");
+            DropForeignKey("Users.UserRoles", "RoleId", "Users.Roles");
             DropForeignKey("Users.RolePermissions", "MenuActionId", "Users.MenuActions");
             DropForeignKey("Users.Menus", "ParentId", "Users.Menus");
             DropForeignKey("Users.MenuActions", "MenuId", "Users.Menus");
             DropForeignKey("Users.MenuActions", "ActionId", "Users.Actions");
-            DropIndex("Users.UserRoles", new[] { "UserId" });
-            DropIndex("Users.UserRoles", new[] { "RoleId" });
+            DropIndex("Hotel.RoomTypes", new[] { "HotelId" });
+            DropIndex("Hotel.Rooms", new[] { "RoomTypeId" });
+            DropIndex("Hotel.Rooms", new[] { "FloorId" });
+            DropIndex("Hotel.Hotels", new[] { "CityId" });
+            DropIndex("Hotel.Hotels", new[] { "HotelTypeId" });
+            DropIndex("Hotel.Floors", new[] { "HotelId" });
             DropIndex("Users.UserLogins", new[] { "UserId" });
             DropIndex("Users.UserClaims", new[] { "UserId" });
+            DropIndex("Users.UserRoles", new[] { "RoleId" });
+            DropIndex("Users.UserRoles", new[] { "UserId" });
             DropIndex("Users.RolePermissions", new[] { "RoleId" });
             DropIndex("Users.RolePermissions", new[] { "MenuActionId" });
             DropIndex("Users.Menus", new[] { "ParentId" });
             DropIndex("Users.MenuActions", new[] { "ActionId" });
             DropIndex("Users.MenuActions", new[] { "MenuId" });
-            DropTable("Users.UserRoles");
+            DropTable("Hotel.RoomTypes");
+            DropTable("Hotel.Rooms");
+            DropTable("Hotel.HotelTypes");
+            DropTable("Hotel.Hotels");
+            DropTable("Hotel.Floors");
+            DropTable("Configurations.Cities");
             DropTable("Users.UserLogins");
             DropTable("Users.UserClaims");
             DropTable("Users.Users");
+            DropTable("Users.UserRoles");
             DropTable("Users.Roles");
             DropTable("Users.RolePermissions");
             DropTable("Users.Menus");
