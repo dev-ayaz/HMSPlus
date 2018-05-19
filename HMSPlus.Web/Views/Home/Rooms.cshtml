@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "Rooms";
+}
+
+@section styles{
+    <link href="~/Content/bootstrap-typos.css" rel="stylesheet" />
+    <link href="~/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" />
+    <link href="~/assets/global/plugins/icheck/skins/square/blue.css" rel="stylesheet" />
+    <link href="~/Content/HotelFloorsRooms.css" rel="stylesheet" />
+}
+
+<div class="page-content-wrapper">
+    <div class="page-content pt-0">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light portlet-fit bordered">
+                    <div class="portlet-title mb-0">
+                        <div class="caption">
+                            <i class="icon-microphone font-green"></i>
+                            <span class="caption-subject bold font-green uppercase"> Hotel Rooms</span>
+                            <span class="caption-helper">Rooms details</span>
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-cloud-upload"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-wrench"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-trash"></i>
+                            </a>
+                            <div class="btn-group">
+                                <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
+                                    Actions
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="i"></i> Option 1
+                                        </a>
+                                    </li>
+                                    <li class="divider"> </li>
+                                    <li>
+                                        <a href="javascript:;">Option 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Option 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Option 4</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="portlet-body p-0">
+                         @Html.Partial("_Filter")
+
+                         <div class="timeline">
+                                <!-- TIMELINE ITEM -->
+                                @{
+                                var floorName = new string[] { "G", "1st", "2nd", "3rd" };
+                                var roomColors = new string[] { "bg-red bg-font-red", "bg-blue bg-font-blue", "bg-yellow-crusta bg-font-yellow-crusta", "bg-green-jungle bg-font-green-jungle" };
+                                var roomBeds = new int[] { 2, 3, 4, 5, 6, 7, 8 };
+                                }
+
+                                @for (int f = 0; f < 4; f++)
+                                {
+                                var fName = floorName[f];
+                                var rand = new Random();
+                            <div class="timeline-item">
+                                <div class="timeline-badge" data-toggle="collapse" data-target="#floor@(f)">
+                                    <h4>
+                                        <strong>@fName </strong>
+                                    </h4>
+                                    <small class="mx-auto">Floor</small>
+
+                                </div>
+                                <div class="timeline-body">
+                                    <div class="timeline-body-arrow"> </div>
+
+                                    <div class="timeline-data-header">
+                                        @Html.Partial("_FloorSummary")
+                                    </div>
+
+                                    <div class="rooms collapse fade in" id="floor@(f)">
+
+                                        @for (int r = 1; r < 25; r++)
+                                            {
+                                                var randomRoomClr = roomColors[rand.Next(0, roomColors.Length)];
+
+                                            <div class="room @randomRoomClr" id="room@(r)" data-toggle="modal" data-target="#roomHistory">
+
+                                                <div class="text-center">
+
+                                                    <h4><strong>R-@r</strong></h4>
+                                                    @{
+                                                            var randomRoomBeds = roomBeds[rand.Next(0, roomBeds.Length)];
+                                                        <div class="beds">
+                                                            <div class="bed">
+                                                                <strong>@randomRoomBeds</strong> <i class="fa fa-bed"></i>
+                                                            </div>
+                                                            <div class="bed">
+                                                                <strong>2</strong> available
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+
+                                                <div class="room-footer">
+                                                    <div class="male-in-room font-blue">
+                                                        1 <i class="fa fa-male"></i>
+                                                    </div>
+                                                    <span class="font-blue-chambray">-</span>
+                                                    <div class="female-in-room font-red-pink">
+                                                        2 <i class="fa fa-female"></i>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                                            }
+                                    </div>
+                                </div>
+                            </div>
+                                 }
+                                <!-- END TIMELINE ITEM -->
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("_RoomHistory")
+
+@section scripts{
+    <script src="~/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+    <script src="~//assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            //$('input.checkbox').iCheck({
+            //    checkboxClass: 'icheckbox_square',
+            //    increaseArea: '20%' // optional
+            //});
+        });
+    </script>
+}
+

@@ -89,6 +89,11 @@ namespace HMSPlus.Web.Controllers
 
         }
 
+
+        public ActionResult Rooms()
+        {
+            return View();
+        }
         public HomeController(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
