@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Room";
+}
+
+@section styles{
+    <link href="~/Content/bootstrap-typos.css" rel="stylesheet" />
+    <link href="~/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" />
+    <link href="~/assets/global/plugins/icheck/skins/square/blue.css" rel="stylesheet" />
+    <link href="~/Content/HotelFloorsRooms.css" rel="stylesheet" />
+    <style>
+        .portlet-body {
+            background-color: #e9ecf3;
+        }
+        .customers-list .portlet-title {
+            border: 1px solid #e7ecf1;
+            border-bottom: 0px;
+        }
+        .portlet form {
+            border: 1px solid #e7ecf1;
+        }
+        .customers-list table td {
+            cursor: grab;
+            cursor: -webkit-grab;
+        }
+        .screen-height {
+            min-height: calc(100vh - 200px);
+        }
+        .rooms-filter.form-inline .form-group{
+            width: 40%;
+        }
+    </style>
+}
+
+<div class="page-content-wrapper">
+    <div class="page-content pt-0">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light portlet-fit bordered">
+                    <div class="portlet-body p-0">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 py-0 customers-list">
+                                <div class="portlet light portlet-fit screen-height">
+                                    <div class="portlet-title mb-0">
+                                        <div class="caption">
+                                            <i class="icon-microphone font-green"></i>
+                                            <span class="caption-subject bold font-green uppercase"> Customers List</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body p-0">
+                                        <div class="customers-filter filter-panel">
+                                            @Html.Partial("_customersFilter")
+                                        </div>
+                                        @Html.Partial("_customers")
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 py-0 room-details">
+                                <div class="portlet light portlet-fit screen-height">
+                                    <div class="portlet-title mb-0">
+                                        <div class="caption">
+                                            <i class="icon-microphone font-green"></i>
+                                            <span class="caption-subject bold font-green uppercase"> Room Details</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body p-0">
+                                        <div class="customers-filter filter-panel">
+                                            @Html.Partial("_roomsFilter")
+                                        </div>
+                                        @Html.Partial("_roomCustomers")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    @section scripts{
+        <script src="~/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+        <script src="~//assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+    }
+

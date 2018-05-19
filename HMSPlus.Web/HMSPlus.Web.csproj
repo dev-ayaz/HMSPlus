@@ -1478,6 +1478,11 @@
     <Content Include="Views\Home\_FloorSummary.cshtml" />
     <Content Include="Views\Home\_Filter.cshtml" />
     <Content Include="Views\Home\_RoomHistory.cshtml" />
+    <Content Include="Views\Home\Room.cshtml" />
+    <Content Include="Views\Home\_customers.cshtml" />
+    <Content Include="Views\Home\_customersFilter.cshtml" />
+    <Content Include="Views\Home\_roomsFilter.cshtml" />
+    <Content Include="Views\Home\_roomCustomers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
