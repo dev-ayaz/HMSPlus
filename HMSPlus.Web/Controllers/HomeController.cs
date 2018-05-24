@@ -100,6 +100,11 @@ namespace HMSPlus.Web.Controllers
             return View();
         }
 
+        public ActionResult Room2()
+        {
+            return View();
+        }
+
         public HomeController(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }

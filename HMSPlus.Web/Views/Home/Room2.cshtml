@@ -1,0 +1,112 @@
+﻿
+@section styles{
+    <link href="~/Content/bootstrap-typos.css" rel="stylesheet" />
+    <link href="~/Content/RoomCustomers.css" rel="stylesheet" />
+}
+<div class="page-content-wrapper">
+    <div class="page-content pt-0">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light portlet-fit bordered">
+                    <div class="portlet-title mb-0">
+                        <div class="caption">
+                            <i class="icon-microphone font-green"></i>
+                            <span class="caption-subject bold font-green uppercase"> Assign Customers to rooms</span>
+                            <span class="caption-helper">Rooms details</span>
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-cloud-upload"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-wrench"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-trash"></i>
+                            </a>
+                            <div class="btn-group">
+                                <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
+                                    Actions
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="i"></i> Option 1
+                                        </a>
+                                    </li>
+                                    <li class="divider"> </li>
+                                    <li>
+                                        <a href="javascript:;">Option 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Option 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Option 4</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="portlet-body">
+                        <section class="content-container">
+                            <div class="block customer-room-filter">
+                                <h2 class=" h2hold text-success">Filter</h2>
+
+                                <div class="holder">
+                                    @Html.Partial("RoomPartials/_Filters")
+                                </div>
+                            </div>
+
+                            <div class="block all-customers">
+                                <h2 class=" h2hold text-success">Customers</h2>
+                                <div class="holder">
+                                    @Html.Partial("RoomPartials/_CustomersList")
+                                </div>
+                            </div>
+
+                            <div class="block room-customers">
+                                <h2 class="h2hold text-success">Room Customers</h2>
+                                <div class="holder">
+                                    @Html.Partial("RoomPartials/_RoomCustomers")
+                                </div>
+                            </div>
+
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var customerLi = '';
+        $(function () {
+
+            $("#customersList li").on("dragstart", function (ev) {
+                customerLi = ev.target;
+            });
+
+            $(".drop-container").on("drop", function (ev) {
+                ev.preventDefault();
+                $("#roomCustomers").append(customerLi);
+                $("#roomCustomers > li:last").addClass('new-customer');
+                $('.drop-container').removeClass('dropable-focus');
+                customerLi = '';
+
+            }).on("dragover", function (ev) {
+                ev.preventDefault();
+
+            }).on("dragenter", function (ev) {
+                ev.preventDefault();
+                $('.drop-container').addClass('dropable-focus');
+            });
+        });
+    </script>
+}
+
+

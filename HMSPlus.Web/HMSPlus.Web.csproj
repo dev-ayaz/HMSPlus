@@ -1302,6 +1302,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\HotelFloorsRooms.css" />
+    <Content Include="Content\RoomCustomers.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1487,10 +1488,14 @@
     <Content Include="Views\Home\_Filter.cshtml" />
     <Content Include="Views\Home\_RoomHistory.cshtml" />
     <Content Include="Views\Home\Room.cshtml" />
-    <Content Include="Views\Home\_customers.cshtml" />
+    <Content Include="Views\Home\_customersList.cshtml" />
     <Content Include="Views\Home\_customersFilter.cshtml" />
     <Content Include="Views\Home\_roomsFilter.cshtml" />
     <Content Include="Views\Home\_roomCustomers.cshtml" />
+    <Content Include="Views\Home\Room2.cshtml" />
+    <Content Include="Views\Home\RoomPartials\_Filters.cshtml" />
+    <Content Include="Views\Home\RoomPartials\_CustomersList.cshtml" />
+    <Content Include="Views\Home\RoomPartials\_RoomCustomers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

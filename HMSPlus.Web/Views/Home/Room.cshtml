@@ -11,22 +11,83 @@
         .portlet-body {
             background-color: #e9ecf3;
         }
+
         .customers-list .portlet-title {
             border: 1px solid #e7ecf1;
             border-bottom: 0px;
         }
+
         .portlet form {
             border: 1px solid #e7ecf1;
         }
+
         .customers-list table td {
             cursor: grab;
             cursor: -webkit-grab;
         }
+
         .screen-height {
-            min-height: calc(100vh - 200px);
+            min-height: calc(100vh - 150px);
         }
-        .rooms-filter.form-inline .form-group{
+
+        .rooms-filter.form-inline .form-group {
             width: 40%;
+        }
+
+            .rooms-filter.form-inline .form-group .select2 {
+                width: 100% !important;
+            }
+
+        .portlet-body.form {
+            background-color: #fff;
+        }
+
+        .drop-container {
+            position: relative;
+            align-items: center;
+            min-height: 150px;
+            width: 100%;
+            background-color: #f5f5f5;
+            -moz-transition: all 0.2s ease;
+            -o-transition: all 0.2s ease;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+
+            .drop-container .text-container {
+                width: 100%;
+                font-size: 20px;
+                color: #c1c1c1;
+            }
+
+            .drop-container.dropable-focus {
+                border: 2px #9d9dbd dashed;
+            }
+
+                .drop-container.dropable-focus .text-container {
+                    color: #999;
+                }
+
+            .drop-container .dropable-focus-show {
+                display: none;
+            }
+
+            .drop-container.dropable-focus .dropable-focus-show {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                flex-wrap: nowrap;
+                background-color: #ecebebd9;
+                left: 0px;
+                top: 0px;
+                height: 100%;
+                width: 100%;
+                z-index: 9999;
+            }
+
+        .new-customer {
+            background-color: lightgreen;
         }
     </style>
 }
@@ -50,7 +111,7 @@
                                         <div class="customers-filter filter-panel">
                                             @Html.Partial("_customersFilter")
                                         </div>
-                                        @Html.Partial("_customers")
+                                        @Html.Partial("_customersList")
                                     </div>
                                 </div>
                             </div>
@@ -63,11 +124,34 @@
                                             <span class="caption-subject bold font-green uppercase"> Room Details</span>
                                         </div>
                                     </div>
-                                    <div class="portlet-body p-0">
-                                        <div class="customers-filter filter-panel">
-                                            @Html.Partial("_roomsFilter")
+                                    <div class="portlet-body form p-0">
+                                        <div class="form-body p-0">
+                                            <div class="customers-filter filter-panel">
+                                                @Html.Partial("_roomsFilter")
+                                            </div>
+                                            <div class="drop-container">
+                                                <div class="text-center text-container dropable-focus-show">
+                                                    <div class="text-center col-xs-12">
+                                                        <i class="fa fa-plus"></i>
+                                                        <p>Drop Customers Here</p>
+                                                    </div>
+                                                </div>
+                                                @Html.Partial("_roomCustomers")
+                                            </div>
+                                            <div class="alert alert-info mb-0">
+                                                <strong><i class="fa fa-exclamation-triangle"></i> 2 Beds!</strong> Still empty.
+                                            </div>
+                                            <div class="alert alert-danger mb-0">
+                                                <strong><i class="fa fa-times-circle"></i> Error!</strong> Room limit reached
+                                            </div>
                                         </div>
-                                        @Html.Partial("_roomCustomers")
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <button type="submit" class="btn blue">Save Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -78,10 +162,34 @@
 
         </div>
     </div>
+</div>
 
+@section scripts{
+    <script src="~/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+    <script>
+        var customerRow = '';
+        $(function () {
 
-    @section scripts{
-        <script src="~/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-        <script src="~//assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
-    }
+            $("#customersList tbody tr").on("dragstart", function (ev) {
+                customerRow = ev.target;
+            });
+
+            $(".drop-container").on("drop", function (ev) {
+                ev.preventDefault();
+                $("#roomCustomers tbody").append(customerRow);
+                $('.drop-container').removeClass('dropable-focus');
+                $("#roomCustomers tbody tr:last").addClass('new-customer');
+                customerRow = '';
+
+            }).on("dragover", function (ev) {
+                ev.preventDefault();
+
+            }).on("dragenter", function (ev) {
+                ev.preventDefault();
+                $('.drop-container').addClass('dropable-focus');
+            });
+        });
+    </script>
+}
 
