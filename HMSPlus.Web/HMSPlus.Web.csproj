@@ -242,6 +242,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Hotels\Scripts\Hotel.js" />
     <Content Include="Areas\Users\Scripts\Roles\permissions.js" />
     <Content Include="Areas\Users\Scripts\Roles\Roles.js" />
     <Content Include="Areas\Users\Scripts\Users\Users.js" />

@@ -59,7 +59,7 @@
                                             Rooms
                                         </th>
                                         <th>
-                                           Address
+                                            Address
                                         </th>
                                         <th>
                                             IsActive
@@ -80,6 +80,14 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+
+    <script src="~/Areas/Hotels/Scripts/Hotel.js"></script>
+    <script>
+        Hotel.domConfigurations.initTable();
+    </script>
+}
 
 
 

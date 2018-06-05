@@ -171,7 +171,7 @@ var Users = {
                     "sortable": false, "autoWidth": false
                 },
                     { data: "FirstName", "sortable": true },
-                    { data: "LastName", name: "HouseMeterNumber" },
+                    { data: "LastName"},
                     { data: "Email", "sortable": false },
                     { data: "PhoneNumber", "sortable": false },
                     { data: "CreationDate", "sortable": true },
