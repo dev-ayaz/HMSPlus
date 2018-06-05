@@ -1,0 +1,159 @@
+﻿.content-container {
+    width: 100%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+    .content-container .block {
+        float: left;
+    }
+
+.block.customer-room-filter, .block.room-customers {
+    position: relative;
+    width: 295px;
+}
+
+.block {
+    width: 380px;
+    position: relative;
+}
+
+.content-container > div + div {
+    margin-left: 20px;
+    float: left;
+}
+
+.block h2 {
+    padding-bottom: 6px;
+    clear: both;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.block > .holder {
+    background: #f2f2f2;
+    padding: 8px;
+}
+
+.block .holder > ul, .block .holder .drop-container > ul {
+    border: 1px solid #e9e9ea;
+    overflow-y: scroll;
+    list-style: none;
+    padding: 0px;
+}
+
+.block .holder > ul, .block .holder .drop-container > ul, .block .holder > .filters {
+    height: calc(100vh - 270px);
+    background: none repeat scroll 0 0 #fff;
+}
+
+    .block .holder > ul > li, .block .holder .drop-container > ul li {
+        position: relative;
+        border-bottom: 1px solid #eee;
+    }
+
+.block ul li .root {
+    display: block;
+    line-height: normal;
+    padding-right: 0;
+    width: 100%;
+    padding-left: 12px;
+}
+
+    .block ul li .root .btn {
+        background-color: #fff;
+        border: 1px solid #b5c1d2;
+        border-radius: 3px;
+        margin: 0 10px 0 0;
+        font-size: 10px;
+        line-height: 13px;
+        padding: 3px;
+        border-radius: 3px !important;
+    }
+
+.block ul li span {
+    padding-right: 12px;
+}
+
+.block ul li .root:hover {
+    background: none repeat scroll 0 0 #f8f8f8;
+}
+
+.block ul li[aria-expanded="true"] > .root {
+    background: none repeat scroll 0 0 #f4f4f4 !important;
+}
+
+.block ul li .sas {
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 0;
+    line-height: normal;
+    text-decoration: none !important;
+    font-size: 13px;
+}
+
+.block ul li li {
+    border: 0 none;
+    padding-left: 31px;
+    border-top: 1px solid #fff;
+    display: block;
+}
+
+.block ul li .no-child {
+    background: none repeat scroll 0 0 #ccc;
+    display: inline-block;
+    height: 2px;
+    margin: 19px 8px 0 0;
+    width: 5px;
+}
+
+.drop-container {
+    position: relative;
+    align-items: center;
+    min-height: 120px;
+    width: 100%;
+    background-color: #f5f5f5;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+    .drop-container .text-container {
+        width: 100%;
+        font-size: 20px;
+        color: #c1c1c1;
+    }
+
+    .drop-container.dropable-focus {
+        border: 2px #9d9dbd dashed;
+    }
+
+        .drop-container.dropable-focus .text-container {
+            color: #999;
+        }
+
+    .drop-container .dropable-focus-show {
+        display: none;
+    }
+
+    .drop-container.dropable-focus .dropable-focus-show {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        flex-wrap: nowrap;
+        background-color: #ecebebd9;
+        left: 0px;
+        top: 0px;
+        height: 100%;
+        width: 100%;
+        z-index: 9999;
+    }
+
+.new-customer {
+    background-color: lightgreen;
+}
